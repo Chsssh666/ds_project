@@ -39,7 +39,7 @@ baseline_cv_scores = cross_val_score(
     X_train,
     y_train.values.ravel(),
     cv=cv,
-    scoring='roc_auc'
+    scoring='roc_auc',
     n_jobs=-1
 )
 print("Baseline CV AUC scores:", baseline_cv_scores)
@@ -92,12 +92,12 @@ for params in param_grid:
     
     mean_auc = cv_scores.mean()
     std_auc = cv_scores.std()
-    results = {
+    result = {
         "params": params,
         "cv_auc_mean": mean_auc,
         "cv_auc_std": std_auc
     }
-    results.append(results)
+    results.append(result)
     print(f"Params: {params}, CV AUC Mean: {mean_auc:.4f}, CV AUC Std: {std_auc:.4f}")
 
 # %% Convert results to DataFrame
@@ -160,3 +160,4 @@ plt.title("Top 10 Non-State Feature Importances")
 plt.gca().invert_yaxis()
 plt.savefig("./figures/aus_model1_random_forest_non_state_feature_importance.png", bbox_inches="tight")
 plt.show()
+# %%
